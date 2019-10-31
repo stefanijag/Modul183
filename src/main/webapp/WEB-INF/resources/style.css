@@ -1,0 +1,62 @@
+body {
+	background-color: pink;
+}
+
+#loginFieldset, #registerFieldset {
+	border:0;
+	width: 400px;
+	margin: auto;
+}
+
+#inputUsername {
+	margin-left: 9.5%;
+	margin-bottom: 4.5%;
+}
+
+#inputPassword {
+	margin-left: 11%;
+}
+
+#loginTitle {
+	margin-left: 40%;
+}
+
+#inputName {
+	margin-left: 19%;
+	margin-bottom: 4.5%;
+}
+
+#inputLastname {
+	margin-left: 9%;
+	margin-bottom: 4.5%;
+}
+
+#inputConfirmPassword {
+	margin-left: 11%;
+}
+
+#labelConfirmPassword {
+	margin-top: 1.5%;
+}
+
+#labelEmail{
+	margin-top: -1.5%;
+}
+
+#inputEmail {
+	margin-left: 18%;
+	margin-top: 4.5%;
+}
+
+#titleRegister{
+	margin-left: 45%;
+}
+
+#submitButtonRegister {
+	margin-left: 46.5%;
+}
+
+#submitButtonLogin {
+	margin-left: 63%;
+	margin-top: 2.5%;
+}
