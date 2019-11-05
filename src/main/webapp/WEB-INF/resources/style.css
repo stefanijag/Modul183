@@ -2,11 +2,19 @@ body {
 	background-color: pink;
 }
 
-#loginFieldset, #registerFieldset {
-	border:0;
+/* Fieldsets */
+#loginFieldset, #registerFieldset, #createProjectFieldset{
+	border: 0;
 	width: 400px;
 	margin: auto;
 }
+
+#overviewProjectFieldset {
+	border: 0;
+	width: 600px;
+	margin: auto;
+}
+/* input fields */
 
 #inputUsername {
 	margin-left: 9.5%;
@@ -17,9 +25,6 @@ body {
 	margin-left: 11%;
 }
 
-#loginTitle {
-	margin-left: 40%;
-}
 
 #inputName {
 	margin-left: 19%;
@@ -35,23 +40,53 @@ body {
 	margin-left: 11%;
 }
 
-#labelConfirmPassword {
-	margin-top: 1.5%;
-}
-
-#labelEmail{
-	margin-top: -1.5%;
-}
-
 #inputEmail {
 	margin-left: 18%;
 	margin-top: 4.5%;
 }
 
-#titleRegister{
+#inputProjectName {
+	margin-left: 18%;
+}
+
+#inputReleaseDate {
+	margin-left: 18.4%;	
+	margin-top: 2.5%;
+}
+
+#inputDescription {
+	margin-left: 21.5%;
+	margin-top: 2.5%;
+}
+
+/* labels */
+labelConfirmPassword {
+	margin-top: 2.1%;
+}
+
+#labelEmail {
+	margin-top: -1.5%;
+}
+
+/* title */
+
+#titleRegister {
 	margin-left: 45%;
 }
 
+#loginTitle {
+	margin-left: 40%;
+}
+
+#titleOverviewProjects {
+	margin-left: 30%;
+}
+
+#titleCreateProject {
+	margin-left: 30%;
+}
+
+/* Buttons */
 #submitButtonRegister {
 	margin-left: 46.5%;
 }
@@ -59,4 +94,21 @@ body {
 #submitButtonLogin {
 	margin-left: 63%;
 	margin-top: 2.5%;
+}
+
+#submitButtonCreateProject {
+	margin-left: 61.5%;
+	margin-top: 2.5%;
+}
+
+/* Table */
+table {
+	font-family: arial, sans-serif;
+	width: 100%;
+}
+
+td, th {
+	text-align: left;
+	padding-right: 25px;
+	padding-bottom: 10px; 
 }
