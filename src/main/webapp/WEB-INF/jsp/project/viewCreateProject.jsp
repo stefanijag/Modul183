@@ -9,6 +9,7 @@
 <link href="/resources/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<jsp:include page="../menu/menu.jsp"/>
 	<form:form method="post" action="/project/add"
 		modelAttribute="project">
 		<fieldset id="createProjectFieldset">

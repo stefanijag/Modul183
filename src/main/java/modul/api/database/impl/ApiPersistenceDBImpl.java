@@ -1,5 +1,7 @@
 package modul.api.database.impl;
 
-public class ApiPersistenceDBImpl {
+import modul.api.service.api.ApiPersistenceAPI;
+
+public class ApiPersistenceDBImpl implements ApiPersistenceAPI{
 
 }

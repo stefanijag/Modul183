@@ -9,6 +9,7 @@
 <link href="/resources/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<jsp:include page="../menu/menu.jsp"/>	
 	<fieldset id="overviewProjectFieldset">
 		<h3 id="titleOverviewProjects">Overview Projects</h3>
 		<table>

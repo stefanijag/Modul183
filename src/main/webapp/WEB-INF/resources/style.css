@@ -1,9 +1,50 @@
 body {
+	font-family: Frutiger, Arial, Helvetica, sans-serif;
 	background-color: pink;
 }
+/* MENU */
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #E5E5E5;
+	border-radius: 3px;
+}
 
-/* Fieldsets */
-#loginFieldset, #registerFieldset, #createProjectFieldset{
+ul a  {
+	text-decoration: none;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: inline-block;
+	color: #696969;
+	text-align: center;
+	text-decoration: none;
+	padding: 14px 16px;
+}
+
+#menuLogout {
+	float: right;
+	padding: 14px 16px;
+}
+
+.menu li {
+	cursor: pointer;
+}
+
+.menu a:hover {
+	background-color: #CDCDCD;
+	color: black;
+}
+
+/* FIELDSETS */
+
+#loginFieldset, #registerFieldset, #createProjectFieldset {
 	border: 0;
 	width: 400px;
 	margin: auto;
@@ -14,17 +55,16 @@ body {
 	width: 600px;
 	margin: auto;
 }
-/* input fields */
+/* INPUT FIELDS */
 
 #inputUsername {
-	margin-left: 9.5%;
+	margin-left: 11.4%;
 	margin-bottom: 4.5%;
 }
 
 #inputPassword {
-	margin-left: 11%;
+	margin-left: 12%;
 }
-
 
 #inputName {
 	margin-left: 19%;
@@ -32,16 +72,16 @@ body {
 }
 
 #inputLastname {
-	margin-left: 9%;
+	margin-left: 11.2%;
 	margin-bottom: 4.5%;
 }
 
 #inputConfirmPassword {
-	margin-left: 11%;
+	margin-left: 12%;
 }
 
 #inputEmail {
-	margin-left: 18%;
+	margin-left: 18.2%;
 	margin-top: 4.5%;
 }
 
@@ -50,16 +90,17 @@ body {
 }
 
 #inputReleaseDate {
-	margin-left: 18.4%;	
+	margin-left: 17.7%;
 	margin-top: 2.5%;
 }
 
 #inputDescription {
-	margin-left: 21.5%;
+	margin-left: 21.7%;
 	margin-top: 2.5%;
 }
 
-/* labels */
+/* LABLES */
+
 labelConfirmPassword {
 	margin-top: 2.1%;
 }
@@ -68,7 +109,7 @@ labelConfirmPassword {
 	margin-top: -1.5%;
 }
 
-/* title */
+/* TITLE */
 
 #titleRegister {
 	margin-left: 45%;
@@ -86,13 +127,13 @@ labelConfirmPassword {
 	margin-left: 30%;
 }
 
-/* Buttons */
+/* BUTTONS */
 #submitButtonRegister {
-	margin-left: 46.5%;
+	margin-left: 44.3%;
 }
 
 #submitButtonLogin {
-	margin-left: 63%;
+	margin-left: 61%;
 	margin-top: 2.5%;
 }
 
@@ -101,7 +142,7 @@ labelConfirmPassword {
 	margin-top: 2.5%;
 }
 
-/* Table */
+/* TABLE */
 table {
 	font-family: arial, sans-serif;
 	width: 100%;
@@ -110,5 +151,5 @@ table {
 td, th {
 	text-align: left;
 	padding-right: 25px;
-	padding-bottom: 10px; 
+	padding-bottom: 10px;
 }
