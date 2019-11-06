@@ -15,6 +15,8 @@ public class LoginHIBBean {
 	private Long loginId;
 	@Column(name = "USERNAME")
 	private String username;
+	@Column(name = "ROLE")
+	private String role;
 	@Column(name = "PASSWORD")
 	private String password;
 	@Column(name = "EMAIL")
