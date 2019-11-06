@@ -3,12 +3,13 @@ package modul.api.database.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import modul.api.database.repo.ProjectRepository;
 import modul.api.service.api.ApiPersistenceAPI;
 import modul.api.service.hibbean.ProjectHIBBean;
 
-
+@Service
 public class ApiPersistenceDBImpl implements ApiPersistenceAPI{
 	
 	@Autowired

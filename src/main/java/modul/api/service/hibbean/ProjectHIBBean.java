@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "PROJECT")
 public class ProjectHIBBean {
 	@Id
 	@GeneratedValue
@@ -21,6 +21,16 @@ public class ProjectHIBBean {
 	private Date releaseDate;
 	@Column(name = "DESCRIPTION")
 	private String description;
+	
+	public ProjectHIBBean() {
+		
+	}
+	
+	public ProjectHIBBean(String projectName, Date releaseDate, String description) {
+		this.projectName = projectName;
+		this.releaseDate = releaseDate;
+		this.description = description;
+	}
 	
 	public Long getProjectId() {
 		return projectId;
