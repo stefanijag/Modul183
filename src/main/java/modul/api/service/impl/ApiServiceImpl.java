@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import modul.api.service.ApiService;
 import modul.api.service.api.ApiPersistenceAPI;
 import modul.api.service.bean.ProjectBean;
+import modul.api.service.exception.ModulException;
+import modul.api.service.hibbean.LoginHIBBean;
 import modul.api.service.hibbean.ProjectHIBBean;
 
 @Service
@@ -40,6 +42,21 @@ public class ApiServiceImpl implements ApiService{
 	@Override
 	public void deleteProject(ProjectBean projectBean) throws Exception {
 		persistence.deleteProject(new ProjectHIBBean(projectBean.getProjectName(), Date.valueOf(projectBean.getReleaseDate()), projectBean.getDescription()));
+	}
+
+	@Override
+	public Long updateLogin(LoginHIBBean loginHIBBean) throws ModulException {
+		return persistence.updateLogin(loginHIBBean);
+	}
+
+	@Override
+	public String readLoginByUsernameAndPassword(String username, String password) throws ModulException {
+		return persistence.readLoginByUsernameAndPassword(username, password);
+	}
+
+	@Override
+	public Long createAccount(LoginHIBBean loginHIBBean) throws ModulException {
+		return persistence.createAccount(loginHIBBean);
 	}
 	
 }

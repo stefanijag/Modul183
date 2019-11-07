@@ -1,7 +1,5 @@
 package modul.api.ui;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -16,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import modul.api.service.ApiService;
 import modul.api.service.bean.ProjectBean;
-import modul.api.service.hibbean.ProjectHIBBean;
 
 @Controller
 public class ProjectController {
@@ -25,16 +22,16 @@ public class ProjectController {
 	private ApiService service;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
 	
-	@RequestMapping(value = "/overview")
-	public ModelAndView showOverview(ModelMap model) {
-		try {
-			model.addAttribute("projects", (List<ProjectHIBBean>) service.readAllProjects().get());
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage());
-		}
-		return new ModelAndView("/project/overviewProject");
-	}
-	
+//	@RequestMapping(value = "/overview")
+//	public ModelAndView showOverview(ModelMap model) {
+//		try {
+//			model.addAttribute("projects", (List<ProjectHIBBean>) service.readAllProjects().get());
+//		} catch (Exception e) {
+//			LOGGER.error(e.getMessage());
+//		}
+//		return new ModelAndView("/project/overviewProject");
+//	}
+//	
 	@RequestMapping(value="/project")
 	public ModelAndView displayCreateProjectForm(@Valid@ModelAttribute("project")ProjectBean projectBean, BindingResult result, ModelMap model) {
 		return new ModelAndView("/project/viewCreateProject");
