@@ -19,5 +19,6 @@ public interface ApiPersistenceAPI {
 	Long updateLogin(LoginHIBBean loginHIBBean) throws ModulException;
 	String readLoginByUsernameAndPassword(String username, String password)throws ModulException;
 	Long createAccount(LoginHIBBean loginHIBBean) throws ModulException;
+	Optional<LoginHIBBean> readLoginById(Long loginId) throws ModulException;
 
 }

@@ -3,6 +3,7 @@ package modul.api.service.hibbean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "USER")
 public class LoginHIBBean {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Long loginId;
 	@Column(name = "USERNAME")
@@ -25,6 +26,19 @@ public class LoginHIBBean {
 	private String name;
 	@Column(name = "LASTNAME")
 	private String lastname;
+	
+	public LoginHIBBean() {
+		
+	}
+	
+	public LoginHIBBean(String username, String role, String password, String email, String name, String lastname) {
+		this.username = username;
+		this.role = role;
+		this.password = password;
+		this.email = email;
+		this.name = name;
+		this.lastname = lastname;
+	}
 
 	public Long getLoginId() {
 		return loginId;
@@ -74,4 +88,11 @@ public class LoginHIBBean {
 		this.lastname = lastname;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

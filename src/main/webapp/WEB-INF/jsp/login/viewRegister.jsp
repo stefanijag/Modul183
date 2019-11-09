@@ -13,6 +13,7 @@
 		modelAttribute="register">
 		<fieldset id="registerFieldset">
 			<h3 id="titleRegister">Register</h3>
+			<jsp:include page="../error/error.jsp" />
 			<form:label for="name" path="name" id="labelName">Name*: </form:label>
 			<form:input type="text" name="name" path="name" id="inputName" /><br>
 			<form:label for="lastname" path="lastname" id="labelLastname">Last

@@ -9,6 +9,7 @@ import modul.api.service.hibbean.ProjectHIBBean;
 
 public interface ApiService {
 
+	//project
 	Long updateProject(ProjectBean projectBean) throws Exception;
 
 	Optional<Iterable<ProjectHIBBean>> readAllProjects() throws Exception;
@@ -25,4 +26,6 @@ public interface ApiService {
 	String readLoginByUsernameAndPassword(String username, String password) throws ModulException;
 
 	Long createAccount(LoginHIBBean loginHIBBean) throws ModulException;
+	
+	Optional<LoginHIBBean> readLoginById(Long loginId) throws ModulException;
 }

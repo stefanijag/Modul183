@@ -13,6 +13,7 @@
 	<jsp:include page="../menu/menu.jsp" />
 	<fieldset id="overviewProjectFieldset">
 		<h3 id="titleOverviewProjects">Overview Projects</h3>
+		<jsp:include page="../error/error.jsp" />
 		<table>
 			<tr>
 				<th>Project Name</th>
@@ -27,9 +28,6 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<form action="/project">
-			<button id="buttonRedirect">Add Project</button>
-		</form>
 	</fieldset>
 </body>
 </html>

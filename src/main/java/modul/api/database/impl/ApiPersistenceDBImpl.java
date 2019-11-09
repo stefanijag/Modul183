@@ -93,4 +93,13 @@ public class ApiPersistenceDBImpl implements ApiPersistenceAPI{
 		}
 	}
 
+	@Override
+	public Optional<LoginHIBBean> readLoginById(Long loginId) throws ModulException {
+		try {
+			return loginRepo.findById(loginId);
+		} catch(Exception e){
+			throw new ModulException(e.getMessage(), e);
+		}
+	}
+
 }

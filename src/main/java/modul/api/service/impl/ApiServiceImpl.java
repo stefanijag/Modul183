@@ -58,5 +58,10 @@ public class ApiServiceImpl implements ApiService{
 	public Long createAccount(LoginHIBBean loginHIBBean) throws ModulException {
 		return persistence.createAccount(loginHIBBean);
 	}
+
+	@Override
+	public Optional<LoginHIBBean> readLoginById(Long loginId) throws ModulException {
+		return persistence.readLoginById(loginId);
+	}
 	
 }

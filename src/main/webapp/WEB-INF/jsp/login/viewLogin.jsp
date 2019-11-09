@@ -12,6 +12,7 @@
 	<form:form method="post" action="/login/check" modelAttribute="login">
 		<fieldset id="loginFieldset">
 			<h3 id="loginTitle">Login</h3>
+			<jsp:include page="../error/error.jsp" />
 			<form:label for="username" path="username" id="labelUsername">Username: </form:label>
 			<form:input type="text" name="username" path="username"
 				id="inputUsername" />
