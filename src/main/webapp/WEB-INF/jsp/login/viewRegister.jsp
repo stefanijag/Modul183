@@ -9,31 +9,40 @@
 <link href="/resources/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<form:form method="post" action="/register/submit"
-		modelAttribute="register">
-		<fieldset id="registerFieldset">
+	<fieldset id="registerFieldset">
+		<form:form method="post" action="/register/submit"
+			modelAttribute="register">
 			<h3 id="titleRegister">Register</h3>
 			<jsp:include page="../error/error.jsp" />
 			<form:label for="name" path="name" id="labelName">Name*: </form:label>
-			<form:input type="text" name="name" path="name" id="inputName" /><br>
+			<form:input type="text" name="name" path="name" id="inputName" />
+			<br>
 			<form:label for="lastname" path="lastname" id="labelLastname">Last
 				name*: </form:label>
 			<form:input type="text" id="inputLastname" name="lastname"
 				path="lastname" />
 			<br>
 			<form:label for="username" path="username" id="labelUsername">Username*: </form:label>
-			<form:input type="text" name="username" path="username" id="inputUsername" /><br>
+			<form:input type="text" name="username" path="username"
+				id="inputUsername" />
+			<br>
 			<form:label for="password" path="password" id="labelPassword">Password*:
 			</form:label>
-			<form:input type="text" id="inputPassword" name="password" path="password"/><br>
-			<form:label for="confirmPassword" path="confirmPassword" id="labelConfirmPassword">Confirm<br> Password*: </form:label>
-			<form:input type="text" id="inputConfirmPassword" name="confirmPassword" path="confirmPassword"/>
+			<form:input type="password" id="inputPassword" name="password"
+				path="password" />
+			<br>
+			<form:label for="confirmPassword" path="confirmPassword"
+				id="labelConfirmPassword">Confirm<br> Password*: </form:label>
+			<form:input type="password" id="inputConfirmPassword"
+				name="confirmPassword" path="confirmPassword" />
 			<br>
 			<form:label for="email" path="email" id="labelEmail">E-Mail*: </form:label>
-			<form:input type="text" name="email" path="email" id="inputEmail" /><br> <br>
+			<form:input type="text" name="email" path="email" id="inputEmail" />
+			<br>
+			<br>
 			<input type="submit" id="submitButtonRegister" value="Submit" />
-			<button id="cancelButtonRegister">Cancel</button>
-		</fieldset>
-	</form:form>
+			<a href="../login"><input type="button" id="cancelButtonRegister" value="Cancel"></a>
+		</form:form>
+	</fieldset>
 </body>
 </html>

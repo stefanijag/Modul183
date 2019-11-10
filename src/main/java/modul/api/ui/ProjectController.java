@@ -15,6 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 import modul.api.service.ApiService;
 import modul.api.service.bean.ProjectBean;
 
+/**
+ * the controller for all views for the project
+ * 
+ * M183: Project collector
+ * 
+ * @author Kristina Klincov, Stefanija Gojkovic
+ * @version 1.1
+ */
 @Controller
 public class ProjectController {
 

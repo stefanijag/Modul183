@@ -7,6 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * the Hibernate Bean for the user
+ * 
+ * M183: Project collector
+ * 
+ * @author Kristina Klincov, Stefanija Gojkovic
+ * @version 1.2
+ */
 @Entity
 @Table(name = "USER")
 public class LoginHIBBean {
@@ -38,6 +46,11 @@ public class LoginHIBBean {
 		this.email = email;
 		this.name = name;
 		this.lastname = lastname;
+	}
+
+	public LoginHIBBean(Long loginId, String role) {
+		this.loginId = loginId;
+		this.role = role;
 	}
 
 	public Long getLoginId() {

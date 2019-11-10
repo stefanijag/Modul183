@@ -7,7 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+/**
+ * the Hibernate Bean for the projects
+ * 
+ * M183: Project collector
+ * 
+ * @author Kristina Klincov, Stefanija Gojkovic
+ * @version 1.2
+ */
 @Entity
 @Table(name = "PROJECT")
 public class ProjectHIBBean {

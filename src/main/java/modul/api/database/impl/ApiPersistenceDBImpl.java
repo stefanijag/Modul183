@@ -8,10 +8,18 @@ import org.springframework.stereotype.Service;
 import modul.api.database.repo.LoginRepository;
 import modul.api.database.repo.ProjectRepository;
 import modul.api.service.api.ApiPersistenceAPI;
-import modul.api.service.exception.ModulException;
+import modul.api.service.exception.ProjectCollectorException;
 import modul.api.service.hibbean.LoginHIBBean;
 import modul.api.service.hibbean.ProjectHIBBean;
 
+/**
+ * Implementation for all needed database statements database level
+ * 
+ * M183: Project collector
+ * 
+ * @author Kristina Klincov, Stefanija Gojkovic
+ * @version 1.1
+ */
 @Service
 public class ApiPersistenceDBImpl implements ApiPersistenceAPI{
 	
@@ -21,84 +29,93 @@ public class ApiPersistenceDBImpl implements ApiPersistenceAPI{
 	private LoginRepository loginRepo;
 
 	@Override
-	public Long updateProject(ProjectHIBBean projectHIBBean) throws ModulException{
+	public Long updateProject(ProjectHIBBean projectHIBBean) throws ProjectCollectorException{
 		try {
 			return projectRepo.save(projectHIBBean).getProjectId();			
 		} catch (Exception e) {
-			throw new ModulException(e.getMessage(), e);
+			throw new ProjectCollectorException(e.getMessage(), e);
 		}
 	}
 
 	@Override
-	public Optional<Iterable<ProjectHIBBean>> readAllProjects() throws ModulException{
+	public Optional<Iterable<ProjectHIBBean>> readAllProjects() throws ProjectCollectorException{
 		try {
 			return Optional.of(projectRepo.findAll());
 		} catch(Exception e){
-			throw new ModulException(e.getMessage(), e);
+			throw new ProjectCollectorException(e.getMessage(), e);
 		}
 	}
 
 	@Override
-	public Optional<ProjectHIBBean> readProjectById(Long projectId) throws ModulException{
+	public Optional<ProjectHIBBean> readProjectById(Long projectId) throws ProjectCollectorException{
 		try {
 			return projectRepo.findById(projectId);
 		} catch(Exception e){
-			throw new ModulException(e.getMessage(), e);
+			throw new ProjectCollectorException(e.getMessage(), e);
 		}
 	}
 
 	@Override
-	public Long createProject(ProjectHIBBean projectHIBBean) throws ModulException {
+	public Long createProject(ProjectHIBBean projectHIBBean) throws ProjectCollectorException {
 		try {
 			return projectRepo.save(projectHIBBean).getProjectId();
 		} catch(Exception e){
-			throw new ModulException(e.getMessage(), e);
+			throw new ProjectCollectorException(e.getMessage(), e);
 		}
 		
 	}
 
 	@Override
-	public void deleteProject(ProjectHIBBean projectHIBBean) throws ModulException {
+	public void deleteProject(ProjectHIBBean projectHIBBean) throws ProjectCollectorException {
 		try {
 			projectRepo.delete(projectHIBBean);
 		} catch(Exception e){
-			throw new ModulException(e.getMessage(), e);
+			throw new ProjectCollectorException(e.getMessage(), e);
 		}
 	}
 
 	@Override
-	public Long updateLogin(LoginHIBBean loginHIBBean) throws ModulException {
+	public Long updateLogin(LoginHIBBean loginHIBBean) throws ProjectCollectorException {
 		try {
 			return loginRepo.save(loginHIBBean).getLoginId();
 		}catch(Exception e) {
-			throw new ModulException(e.getMessage(), e);
+			throw new ProjectCollectorException(e.getMessage(), e);
 		}
 	}
 
 	@Override
-	public String readLoginByUsernameAndPassword(String username, String password) throws ModulException {
+	public String readLoginByUsernameAndPassword(String username, String password) throws ProjectCollectorException {
 		try{
 			return loginRepo.loginByUsernameAndPassword(username, password);
 		}catch(Exception e) {
-			throw new ModulException(e.getMessage(), e);
+			throw new ProjectCollectorException(e.getMessage(), e);
 		}
 	}
 
 	@Override
-	public Long createAccount(LoginHIBBean loginHIBBean) throws ModulException {
+	public Long createAccount(LoginHIBBean loginHIBBean) throws ProjectCollectorException {
 		try {
 			return loginRepo.save(loginHIBBean).getLoginId();
 		}catch(Exception e) {
-			throw new ModulException(e.getMessage(),e);
+			throw new ProjectCollectorException(e.getMessage(),e);
 		}
 	}
 
 	@Override
-	public Optional<LoginHIBBean> readLoginById(Long loginId) throws ModulException {
+	public Optional<LoginHIBBean> readLoginById(Long loginId) throws ProjectCollectorException {
 		try {
 			return loginRepo.findById(loginId);
 		} catch(Exception e){
-			throw new ModulException(e.getMessage(), e);
+			throw new ProjectCollectorException(e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public Optional<Iterable<LoginHIBBean>> readAllLogin() throws ProjectCollectorException {
+		try {
+			return Optional.of(loginRepo.findAll());
+		} catch(Exception e){
+			throw new ProjectCollectorException(e.getMessage(), e);
 		}
 	}
 

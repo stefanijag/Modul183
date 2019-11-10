@@ -4,6 +4,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ * the Bean for project
+ * 
+ * M183: Project collector
+ * 
+ * @author Kristina Klincov, Stefanija Gojkovic
+ * @version 1.2
+ */
 public class ProjectBean {
 	
 	private Long projectId;
@@ -16,6 +24,8 @@ public class ProjectBean {
 	@Size(min=1, max=250, message="Die Beschreibung muss mindestens drei Zeichen und kann höchstens 250 enthalten!")
 	private String description;
 
+	//Getter and setter
+	
 	public Long getProjectId() {
 		return projectId;
 	}

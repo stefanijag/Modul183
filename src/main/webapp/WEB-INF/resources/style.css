@@ -12,7 +12,7 @@ ul {
 	border-radius: 3px;
 }
 
-ul a  {
+a  {
 	text-decoration: none;
 }
 
@@ -141,6 +141,7 @@ labelConfirmPassword {
 	margin-left: 61.5%;
 	margin-top: 2.5%;
 }
+
 
 /* TABLE */
 table {

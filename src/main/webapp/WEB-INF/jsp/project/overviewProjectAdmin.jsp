@@ -10,7 +10,14 @@
 <link href="/resources/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<jsp:include page="../menu/menu.jsp" />
+		<div class="menu">
+		<ul>
+			<li><a href="../projectAdmin">Overview</a></li>
+			<li><a href="../project">Add Project</a></li>
+			<li><a href="../project/role">Change Roles</a></li>
+			<li id="menuLogout"><a href="../login">Log out</a></li>
+		</ul>
+	</div>
 	<fieldset id="overviewProjectFieldset">
 		<h3 id="titleOverviewProjects">Overview Projects</h3>
 		<jsp:include page="../error/error.jsp" />
