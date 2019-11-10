@@ -1,5 +1,7 @@
 package modul.api.ui;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -14,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import modul.api.service.ApiService;
 import modul.api.service.bean.ProjectBean;
+import modul.api.service.exception.ProjectCollectorException;
+import modul.api.service.hibbean.ProjectHIBBean;
 
 /**
  * the controller for all views for the project
@@ -36,7 +40,12 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="/projectOverview")
-	public ModelAndView user() {
+	public ModelAndView user(ModelMap model) {
+		try {
+			model.addAttribute("projects", (List<ProjectHIBBean>) service.readAllProjects().get());
+		} catch (ProjectCollectorException e) {
+			LOGGER.error(e.getMessage(), e);
+		}
 		LOGGER.info("return page for an user");
 		return new ModelAndView("/project/overviewProject");
 	}
@@ -48,7 +57,12 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value ="/projects")
-	public ModelAndView admin() {
+	public ModelAndView admin(ModelMap model) {
+		try {
+			model.addAttribute("projects", (List<ProjectHIBBean>) service.readAllProjects().get());
+		} catch (ProjectCollectorException e) {
+			LOGGER.error(e.getMessage(), e);
+		}
 		return new ModelAndView("/project/overviewProjectAdmin");
 	}
 	
@@ -59,7 +73,7 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/project/add")
-	public ModelAndView saveComponent(@Valid @ModelAttribute("project") ProjectBean projectBean, BindingResult result,
+	public ModelAndView saveProject(@Valid @ModelAttribute("project") ProjectBean projectBean, BindingResult result,
 			ModelMap model) {
 		try {
 			if (result.hasErrors()) {

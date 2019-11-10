@@ -13,19 +13,19 @@
 		<div class="menu">
 		<ul>
 			<li><a href="../projectAdmin">Overview</a></li>
-			<li><a href="../project">Add Project</a></li>
-			<li><a href="../project/role">Change Roles</a></li>
+			<li><a href="../project">Projekt Hinzufügen</a></li>
+			<li><a href="../project/role">Rolen ändern</a></li>
 			<li id="menuLogout"><a href="../login">Log out</a></li>
 		</ul>
 	</div>
 	<fieldset id="overviewProjectFieldset">
-		<h3 id="titleOverviewProjects">Overview Projects</h3>
+		<h3 id="titleOverviewProjects">Overview Projekte</h3>
 		<jsp:include page="../error/error.jsp" />
 		<table>
 			<tr>
-				<th>Project Name</th>
+				<th>Projektname</th>
 				<th>Release Date</th>
-				<th>Description</th>
+				<th>Beschreibung</th>
 			</tr>
 			<c:forEach items="${projects}" var="project" varStatus="loop">
 				<tr>

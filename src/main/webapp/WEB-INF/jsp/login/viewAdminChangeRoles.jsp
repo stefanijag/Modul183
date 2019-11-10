@@ -13,8 +13,8 @@
 	<div class="menu">
 		<ul>
 			<li><a href="../projectAdmin">Overview</a></li>
-			<li><a href="../project">Add Project</a></li>
-			<li><a href="..//project/role">Change Roles</a></li>
+			<li><a href="../project">Projekt Hinzufügen</a></li>
+			<li><a href="..//project/role">Rolen ändern</a></li>
 			<li id="menuLogout">Log out</li>
 		</ul>
 	</div>
@@ -22,7 +22,7 @@
 	<form:form method="post" action="/project/role/submit"
 		modelAttribute="login">
 		<fieldset id="registerFieldset">
-			<h3 id="titleRegister">Change Role Of User</h3>
+			<h3 id="titleRegister">Role eines Users ändern</h3>
 			<jsp:include page="../error/error.jsp" />
 			<br>
 			<form:label for="username" path="username" id="labelUsername">Username: </form:label>

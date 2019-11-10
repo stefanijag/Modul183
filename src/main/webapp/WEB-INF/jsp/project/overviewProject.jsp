@@ -17,13 +17,13 @@
 		</ul>
 	</div>
 	<fieldset id="overviewProjectFieldset">
-		<h3 id="titleOverviewProjects">Overview Projects</h3>
+		<h3 id="titleOverviewProjects">Overview Projekte</h3>
 		<jsp:include page="../error/error.jsp" />
 		<table>
 			<tr>
-				<th>Project Name</th>
+				<th>Projektname</th>
 				<th>Release Date</th>
-				<th>Description</th>
+				<th>Beschreibung</th>
 			</tr>
 			<c:forEach items="${projects}" var="project" varStatus="loop">
 				<tr>

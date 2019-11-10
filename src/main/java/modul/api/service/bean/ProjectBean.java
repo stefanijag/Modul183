@@ -21,7 +21,8 @@ public class ProjectBean {
 	private String projectName;
 	@NotBlank(message="Bitte wählen Sie ein Release Datum aus")
 	private String releaseDate;
-	@Size(min=1, max=250, message="Die Beschreibung muss mindestens drei Zeichen und kann höchstens 250 enthalten!")
+	@NotBlank(message="Bitte geben Sie einen Beschreibung ein")
+	@Size(min=3, max=250, message="Die Beschreibung muss mindestens drei Zeichen und kann höchstens 250 enthalten!")
 	private String description;
 
 	//Getter and setter

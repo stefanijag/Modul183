@@ -25,7 +25,7 @@ public class RegisterUIBean {
 	private String confirmPassword;
 	@NotBlank(message = "Bitte geben Sie Ihre E-Mail Adresse ein")
 	//Zwischen dem @ muss es zeichen geben
-	@Pattern(regexp = "/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$/", message="Ungueltige E-Mail!") // Noed sicher obs guet isch
+	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message="Ungueltige E-Mail!") // Noed sicher obs guet isch
 	private String email;
 	private String role = "US";
 

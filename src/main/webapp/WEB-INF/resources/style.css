@@ -30,7 +30,7 @@ li a {
 
 #menuLogout {
 	float: right;
-	padding: 14px 16px;
+/* 	padding: 14px 16px; */
 }
 
 .menu li {
@@ -63,7 +63,7 @@ li a {
 }
 
 #inputPassword {
-	margin-left: 12%;
+	margin-left: 13%;
 }
 
 #inputName {
@@ -72,12 +72,12 @@ li a {
 }
 
 #inputLastname {
-	margin-left: 11.2%;
+	margin-left: 12.2%;
 	margin-bottom: 4.5%;
 }
 
 #inputConfirmPassword {
-	margin-left: 12%;
+	margin-left: 13%;
 }
 
 #inputEmail {
@@ -90,12 +90,12 @@ li a {
 }
 
 #inputReleaseDate {
-	margin-left: 17.7%;
+	margin-left: 16.2%;
 	margin-top: 2.5%;
 }
 
 #inputDescription {
-	margin-left: 21.7%;
+	margin-left: 16.2%;
 	margin-top: 2.5%;
 }
 
@@ -124,7 +124,7 @@ labelConfirmPassword {
 }
 
 #titleCreateProject {
-	margin-left: 30%;
+	margin-left: 20%;
 }
 
 /* BUTTONS */
@@ -138,7 +138,7 @@ labelConfirmPassword {
 }
 
 #submitButtonCreateProject {
-	margin-left: 61.5%;
+	margin-left: 55%;
 	margin-top: 2.5%;
 }
 

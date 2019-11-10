@@ -12,23 +12,23 @@
 	<div class="menu">
 		<ul>
 			<li><a href="../projectAdmin">Overview</a></li>
-			<li><a href="../project">Add Project</a></li>
-			<li><a href="..//project/role">Change Roles</a></li>
+			<li><a href="../project">Projekt Hinzufügen</a></li>
+			<li><a href="..//project/role">Rolen ändern</a></li>
 			<li id="menuLogout"><a href="../login">Log out</a></li>
 		</ul>
 	</div>
 	<form:form method="post" action="/project/add"
 		modelAttribute="project">
 		<fieldset id="createProjectFieldset">
-			<h3 id="titleCreateProject">Add New Project</h3>
+			<h3 id="titleCreateProject">Neues Projekt Hinzufügen</h3>
 			<jsp:include page="../error/error.jsp"/>
-			<form:label for="projectName" path="projectName" id="labelProjectName">Project Name*: </form:label>
+			<form:label for="projectName" path="projectName" id="labelProjectName">Projektname*: </form:label>
 			<form:input type="text" name="projectName" path="projectName" id="inputProjectName" /><br>
 			<form:label for="releaseDate" path="releaseDate" id="labelReleaseDate">Release Date*: </form:label>
 			<form:input type="date" id="inputReleaseDate" name="releaseDate"
 				path="releaseDate"/>
 			<br>
-			<form:label for="description" path="description" id="labelDescription">Description*: </form:label>
+			<form:label for="description" path="description" id="labelDescription">Beschreibung*: </form:label>
 			<form:input type="text" name="description" path="description" id="inputDescription" /><br>		
 			<input type="submit" id="submitButtonCreateProject" value="Submit" />
 			<a href="../overviewProjectAdmin"><input type="button" id="cancelButtonCreateProject" value="Cancel"/></a>

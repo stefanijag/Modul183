@@ -108,16 +108,20 @@ public class LoginController {
 				model.addAttribute("errors", result.getAllErrors());
 				LOGGER.error("Validation error:" + result.getAllErrors());
 			} else {
-//				if(registerUIBean.getPassword().)
-				if (registerUIBean.getPassword().equals(registerUIBean.getConfirmPassword())) {
-					apiService.createAccount(new LoginHIBBean(registerUIBean.getUsername(), registerUIBean.getRole(),
-							registerUIBean.getPassword(), registerUIBean.getEmail(), registerUIBean.getName(),
-							registerUIBean.getLastname()));
-					LOGGER.info("Registration was successfully made");
-					return new ModelAndView("redirect:/login");
-				}else {
-					LOGGER.info("Password and confirm password does not match");
-					model.addAttribute("error", "Passwort und Passwort bestätigen stimmt nicht überein");
+				if (!registerUIBean.getPassword().matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%+]).{8,})")) {
+					model.addAttribute("error", "Passwort muss: mindenst 8 Zeichen, ein Sonderzeichen, Gross- & Kleinbuchstaben und eine Nummer beinhalten");
+					LOGGER.error("Password isn't secure enough");
+				} else {
+					if (registerUIBean.getPassword().equals(registerUIBean.getConfirmPassword())) {
+						apiService.createAccount(new LoginHIBBean(registerUIBean.getUsername(),
+								registerUIBean.getRole(), registerUIBean.getPassword(), registerUIBean.getEmail(),
+								registerUIBean.getName(), registerUIBean.getLastname()));
+						LOGGER.info("Registration was successfully made");
+						return new ModelAndView("redirect:/login");
+					} else {
+						LOGGER.info("Password and confirm password does not match");
+						model.addAttribute("error", "Passwort und Passwort bestätigen stimmt nicht überein");
+					}
 				}
 			}
 		} catch (ProjectCollectorException e) {
@@ -125,5 +129,5 @@ public class LoginController {
 		}
 		return new ModelAndView("/login/viewRegister");
 	}
-	
+
 }

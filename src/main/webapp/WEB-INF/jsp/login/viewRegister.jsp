@@ -12,13 +12,12 @@
 	<fieldset id="registerFieldset">
 		<form:form method="post" action="/register/submit"
 			modelAttribute="register">
-			<h3 id="titleRegister">Register</h3>
+			<h3 id="titleRegister">Registrieren</h3>
 			<jsp:include page="../error/error.jsp" />
 			<form:label for="name" path="name" id="labelName">Name*: </form:label>
 			<form:input type="text" name="name" path="name" id="inputName" />
 			<br>
-			<form:label for="lastname" path="lastname" id="labelLastname">Last
-				name*: </form:label>
+			<form:label for="lastname" path="lastname" id="labelLastname">Nachname*: </form:label>
 			<form:input type="text" id="inputLastname" name="lastname"
 				path="lastname" />
 			<br>
@@ -26,13 +25,13 @@
 			<form:input type="text" name="username" path="username"
 				id="inputUsername" />
 			<br>
-			<form:label for="password" path="password" id="labelPassword">Password*:
+			<form:label for="password" path="password" id="labelPassword">Passwort*:
 			</form:label>
 			<form:input type="password" id="inputPassword" name="password"
 				path="password" />
 			<br>
 			<form:label for="confirmPassword" path="confirmPassword"
-				id="labelConfirmPassword">Confirm<br> Password*: </form:label>
+				id="labelConfirmPassword">Bestätige<br> Passwort*: </form:label>
 			<form:input type="password" id="inputConfirmPassword"
 				name="confirmPassword" path="confirmPassword" />
 			<br>
