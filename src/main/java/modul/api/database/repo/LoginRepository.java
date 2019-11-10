@@ -11,7 +11,7 @@ import modul.api.service.exception.ProjectCollectorException;
 import modul.api.service.hibbean.LoginHIBBean;
 
 /**
- * CRUD Repo for login, save style for database connection
+ * CRUD Repo for login, save method for database connection
  * 
  * M183: Project collector
  * 

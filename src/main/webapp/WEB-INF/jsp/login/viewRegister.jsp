@@ -27,12 +27,12 @@
 			<br>
 			<form:label for="password" path="password" id="labelPassword">Passwort*:
 			</form:label>
-			<form:input type="password" id="inputPassword" name="password"
+			<form:input type="text" id="inputPassword" name="password"
 				path="password" />
 			<br>
 			<form:label for="confirmPassword" path="confirmPassword"
 				id="labelConfirmPassword">Bestätige<br> Passwort*: </form:label>
-			<form:input type="password" id="inputConfirmPassword"
+			<form:input type="text" id="inputConfirmPassword"
 				name="confirmPassword" path="confirmPassword" />
 			<br>
 			<form:label for="email" path="email" id="labelEmail">E-Mail*: </form:label>
