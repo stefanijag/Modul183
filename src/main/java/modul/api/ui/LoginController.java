@@ -8,12 +8,13 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import modul.api.service.ApiService;
@@ -31,19 +32,19 @@ import modul.api.service.hibbean.ProjectHIBBean;
  * @author Kristina Klincov, Stefanija Gojkovic
  * @version 1.1
  */
-@Controller
+@RestController
 public class LoginController {
 
 	@Autowired
 	ApiService apiService;
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
-	@RequestMapping(value = "/login")
+	@PostMapping(value = "/login")
 	public String index(@Valid @ModelAttribute("login") LoginBean loginBean, BindingResult result) {
 		return "/login/viewLogin";
 	}
 
-	@RequestMapping(value = "/project/role")
+	@PostMapping(value = "/project/role")
 	public ModelAndView showRoleChanger(@Valid @ModelAttribute("login") LoginBean loginBean, BindingResult result,
 			ModelMap model) {
 		try {
@@ -54,7 +55,7 @@ public class LoginController {
 		return new ModelAndView("/login/viewAdminChangeRoles");
 	}
 
-	@RequestMapping(value = "/project/role/submit")
+	@PostMapping(value = "/project/role/submit")
 	public String changeRoles(@RequestParam("role") String role, @Valid @ModelAttribute("login") LoginBean userToChange,
 			BindingResult result, ModelMap model) {
 		LoginHIBBean loginHIBBean = new LoginHIBBean(userToChange.getLoginId(), role);
@@ -70,12 +71,12 @@ public class LoginController {
 		return "/login/viewAdminChangeRoles";
 	}
 
-	@RequestMapping(value = "/register")
+	@PostMapping(value = "/register")
 	public String register(@Valid @ModelAttribute("register") RegisterUIBean regiterUIBean, BindingResult result) {
 		return "/login/viewRegister";
 	}
 
-	@RequestMapping(value = "/login/check")
+	@PostMapping(value = "/login/check")
 	public ModelAndView loginCheck(@Valid @ModelAttribute("login") LoginBean loginBean, BindingResult result,
 			ModelMap model) throws Exception {
 		result.getAllErrors();
@@ -100,7 +101,7 @@ public class LoginController {
 		return new ModelAndView("redirect:/login");
 	}
 
-	@RequestMapping(value = "/register/submit")
+	@PostMapping(value = "/register/submit")
 	public ModelAndView registrationProcess(@Valid @ModelAttribute("register") RegisterUIBean registerUIBean,
 			BindingResult result, ModelMap model) {
 		try {

@@ -7,11 +7,11 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import modul.api.service.ApiService;
@@ -27,19 +27,19 @@ import modul.api.service.hibbean.ProjectHIBBean;
  * @author Kristina Klincov, Stefanija Gojkovic
  * @version 1.1
  */
-@Controller
+@RestController
 public class ProjectController {
 
 	@Autowired
 	private ApiService service;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
 
-	@RequestMapping(value="/projectUser")
+	@PostMapping(value="/projectUser")
 	public ModelAndView showOverviewUser() {
 		return new ModelAndView("redirect:/projectOverview");
 	}
 	
-	@RequestMapping(value="/projectOverview")
+	@PostMapping(value="/projectOverview")
 	public ModelAndView user(ModelMap model) {
 		try {
 			model.addAttribute("projects", (List<ProjectHIBBean>) service.readAllProjects().get());
@@ -50,13 +50,13 @@ public class ProjectController {
 		return new ModelAndView("/project/overviewProject");
 	}
 
-	@RequestMapping(value ="/projectAdmin")
+	@PostMapping(value ="/projectAdmin")
 	public ModelAndView showOverviewAdmin() {
 		LOGGER.info("return page for an admin");
 		return new ModelAndView("redirect:/projects");
 	}
 	
-	@RequestMapping(value ="/projects")
+	@PostMapping(value ="/projects")
 	public ModelAndView admin(ModelMap model) {
 		try {
 			model.addAttribute("projects", (List<ProjectHIBBean>) service.readAllProjects().get());
@@ -66,13 +66,13 @@ public class ProjectController {
 		return new ModelAndView("/project/overviewProjectAdmin");
 	}
 	
-	@RequestMapping(value = "/project")
+	@PostMapping(value = "/project")
 	public ModelAndView displayCreateProjectForm(@Valid @ModelAttribute("project") ProjectBean projectBean,
 			BindingResult result, ModelMap model) {
 		return new ModelAndView("/project/viewCreateProject");
 	}
 
-	@RequestMapping(value = "/project/add")
+	@PostMapping(value = "/project/add")
 	public ModelAndView saveProject(@Valid @ModelAttribute("project") ProjectBean projectBean, BindingResult result,
 			ModelMap model) {
 		try {
@@ -86,7 +86,7 @@ public class ProjectController {
 			} else {
 				createProject(projectBean);
 				model.addAttribute("success", "Das Projekt wurde erfolgreich erstellt!");
-				LOGGER.info("Project was successfully created!");
+				LOGGER.info("Project was sucOcessfully created!");
 			}
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
