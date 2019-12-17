@@ -29,7 +29,12 @@
 				path="releaseDate"/>
 			<br>
 			<form:label for="description" path="description" id="labelDescription">Beschreibung*: </form:label>
-			<form:input type="text" name="description" path="description" id="inputDescription" /><br>		
+			<form:input type="text" name="description" path="description" id="inputDescription" /><br>
+			<form:label for="developerteam" path="developerteam" id="labelDeveloperteam">Entwicklungsteam*:</form:label><br>
+			 <form:select path="developerteam">
+                <form:option value="-" label="--Entwicklungsteam wählen"/>
+                <form:options items="${developerteam}" />
+            </form:select>
 			<input type="submit" id="submitButtonCreateProject" value="Submit" />
 			<a href="../overviewProjectAdmin"><input type="button" id="cancelButtonCreateProject" value="Cancel"/></a>
 		</fieldset>

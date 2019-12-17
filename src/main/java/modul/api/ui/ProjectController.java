@@ -9,11 +9,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import modul.api.service.ApiService;
 import modul.api.service.bean.ProjectBean;
 import modul.api.service.exception.ProjectCollectorException;
@@ -34,12 +38,12 @@ public class ProjectController {
 	private ApiService service;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
 
-	@PostMapping(value="/projectUser")
+	@PostMapping(value = "/projectUser")
 	public ModelAndView showOverviewUser() {
 		return new ModelAndView("redirect:/projectOverview");
 	}
-	
-	@PostMapping(value="/projectOverview")
+
+	@PostMapping(value = "/projectOverview")
 	public ModelAndView user(ModelMap model) {
 		try {
 			model.addAttribute("projects", (List<ProjectHIBBean>) service.readAllProjects().get());
@@ -50,13 +54,13 @@ public class ProjectController {
 		return new ModelAndView("/project/overviewProject");
 	}
 
-	@PostMapping(value ="/projectAdmin")
+	@PostMapping(value = "/projectAdmin")
 	public ModelAndView showOverviewAdmin() {
 		LOGGER.info("return page for an admin");
 		return new ModelAndView("redirect:/projects");
 	}
-	
-	@PostMapping(value ="/projects")
+
+	@PostMapping(value = "/projects")
 	public ModelAndView admin(ModelMap model) {
 		try {
 			model.addAttribute("projects", (List<ProjectHIBBean>) service.readAllProjects().get());
@@ -65,10 +69,11 @@ public class ProjectController {
 		}
 		return new ModelAndView("/project/overviewProjectAdmin");
 	}
-	
+
 	@PostMapping(value = "/project")
 	public ModelAndView displayCreateProjectForm(@Valid @ModelAttribute("project") ProjectBean projectBean,
 			BindingResult result, ModelMap model) {
+//		model.addAttribute("developerteam", (List<ProjectHIBBean>) service.readAllProjects().get());
 		return new ModelAndView("/project/viewCreateProject");
 	}
 
@@ -94,6 +99,18 @@ public class ProjectController {
 		return new ModelAndView("/project/viewCreateProject");
 	}
 
+	@PutMapping(value = "/project/update")
+	public ModelAndView updateProject(@Valid  @RequestBody ProjectBean projectBean, BindingResult result,
+			ModelMap model) {
+		return new ModelAndView();
+	}
+	
+	@DeleteMapping(value = "/project/{id}")
+	public ModelAndView removeProject(@PathVariable Long id) {
+		return new ModelAndView();
+	}
+	
+	
 	private void updateProject(ProjectBean projectBean) throws Exception {
 		service.updateProject(projectBean);
 	}
