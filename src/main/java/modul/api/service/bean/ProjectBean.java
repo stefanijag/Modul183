@@ -1,5 +1,7 @@
 package modul.api.service.bean;
 
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -24,9 +26,18 @@ public class ProjectBean {
 	@NotBlank(message="Bitte geben Sie einen Beschreibung ein")
 	@Size(min=3, max=250, message="Die Beschreibung muss mindestens drei Zeichen und kann höchstens 250 enthalten!")
 	private String description;
+	private List<TeamBean> developerteam;
 
 	//Getter and setter
 	
+	public List<TeamBean> getDeveloperteam() {
+		return developerteam;
+	}
+
+	public void setDeveloperteam(List<TeamBean> developerteam) {
+		this.developerteam = developerteam;
+	}
+
 	public Long getProjectId() {
 		return projectId;
 	}

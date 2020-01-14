@@ -1,5 +1,6 @@
 package modul.api.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -71,9 +74,12 @@ public class ProjectController {
 	}
 
 	@PostMapping(value = "/project")
+	@RequestMapping(method={RequestMethod.GET})
 	public ModelAndView displayCreateProjectForm(@Valid @ModelAttribute("project") ProjectBean projectBean,
 			BindingResult result, ModelMap model) {
-//		model.addAttribute("developerteam", (List<ProjectHIBBean>) service.readAllProjects().get());
+		List<ProjectHIBBean> list = new ArrayList<>();
+//		model.addAttribute("developerteam", list);
+//		(List<ProjectHIBBean>) service.readAllProjects().get()
 		return new ModelAndView("/project/viewCreateProject");
 	}
 

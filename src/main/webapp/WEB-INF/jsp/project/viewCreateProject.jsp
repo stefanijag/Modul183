@@ -17,7 +17,7 @@
 			<li id="menuLogout"><a href="../login">Log out</a></li>
 		</ul>
 	</div>
-	<form:form method="post" action="/project/add"
+	<form:form action="/project/add"
 		modelAttribute="project">
 		<fieldset id="createProjectFieldset">
 			<h3 id="titleCreateProject">Neues Projekt Hinzufügen</h3>
