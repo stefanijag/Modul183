@@ -44,6 +44,9 @@ public class TeamHIBBean {
 	@JoinTable(name = "PROJECT_ID")
 	private ProjectHIBBean  project;
 	
+	public TeamHIBBean(Long teamId) {
+		this.teamId = teamId;
+	}
 	
 	public TeamHIBBean(Long teamId, String teamname, List<LoginHIBBean> userId, LoginHIBBean teamleiter,
 			ProjectHIBBean project) {
