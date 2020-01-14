@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,7 +23,7 @@ import javax.persistence.Table;
 public class LoginHIBBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ID")
+	@Column(name = "LOGIN_ID")
 	private Long loginId;
 	@Column(name = "USERNAME")
 	private String username;
@@ -34,6 +37,13 @@ public class LoginHIBBean {
 	private String name;
 	@Column(name = "LASTNAME")
 	private String lastname;
+	@OneToOne
+	@JoinColumn(name="TEAMLEITER", nullable=false)
+	private TeamHIBBean teamleiter;
+	
+	@ManyToOne
+	@JoinColumn(name="USER_ID", nullable=false)
+	private TeamHIBBean teammitglieder;
 	
 	public LoginHIBBean() {
 		
@@ -107,5 +117,21 @@ public class LoginHIBBean {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public TeamHIBBean getTeamleiter() {
+		return teamleiter;
+	}
+
+	public void setTeamleiter(TeamHIBBean teamleiter) {
+		this.teamleiter = teamleiter;
+	}
+
+	public TeamHIBBean getTeammitglieder() {
+		return teammitglieder;
+	}
+
+	public void setTeammitglieder(TeamHIBBean teammitglieder) {
+		this.teammitglieder = teammitglieder;
 	}
 }

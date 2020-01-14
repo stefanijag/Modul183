@@ -1,11 +1,15 @@
 package modul.api.service.hibbean;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 /**
  * the Hibernate Bean for the projects
@@ -20,7 +24,7 @@ import javax.persistence.Table;
 public class ProjectHIBBean {
 	@Id
 	@GeneratedValue
-	@Column(name = "ID")
+	@Column(name = "PROJECT_ID")
 	private Long projectId;
 	@Column(name = "PROJECTNAME")
 	private String projectName;
@@ -29,14 +33,19 @@ public class ProjectHIBBean {
 	@Column(name = "DESCRIPTION")
 	private String description;
 	
+	@OneToMany(cascade = CascadeType.MERGE)
+	@JoinTable(name = "TEAM_ID")
+	private List<TeamHIBBean> teams;
+	
 	public ProjectHIBBean() {
 		
 	}
 	
-	public ProjectHIBBean(String projectName, Date releaseDate, String description) {
+	public ProjectHIBBean(String projectName, Date releaseDate, String description, List<TeamHIBBean> teams) {
 		this.projectName = projectName;
 		this.releaseDate = releaseDate;
 		this.description = description;
+		this.teams = teams;
 	}
 	
 	public Long getProjectId() {
@@ -62,5 +71,13 @@ public class ProjectHIBBean {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<TeamHIBBean> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<TeamHIBBean> teams) {
+		this.teams = teams;
 	}
 }
