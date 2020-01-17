@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,9 +40,14 @@ public class LoginController {
 	ApiService apiService;
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
-	@PostMapping(value = "/login")
-	public String index(@Valid @ModelAttribute("login") LoginBean loginBean, BindingResult result) {
-		return "/login/viewLogin";
+//	@PostMapping(value = "/login")
+//	public String index(@Valid @ModelAttribute("login") LoginBean loginBean, BindingResult result) {
+//		return "/login/viewLogin";
+//	}
+	
+	@GetMapping("/login")
+	public LoginBean index(@Valid @ModelAttribute("login") LoginBean loginBean) {
+		return new LoginBean(loginBean.getUsername(), loginBean.getPassword());
 	}
 
 	@PostMapping(value = "/project/role")

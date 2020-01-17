@@ -18,6 +18,11 @@ public class LoginBean {
 
 	//Getter and setter
 	
+	public LoginBean(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
 	public String getUsername() {
 		return username;
 	}

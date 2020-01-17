@@ -18,31 +18,31 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 //@EnableSwagger2
 public class SwaggerConfig {
 
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(paths())
-                .build();
-    }
-
-    // Describe your apis
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("Swagger Sample APIs")
-                .description("This page lists all the rest apis for Swagger Sample App.")
-                .version("1.0-SNAPSHOT")
-                .build();
-    }
-
-    // Only select apis that matches the given Predicates.
-    private Predicate<String> paths() {
-    	// Match all paths except /error
-        return Predicates.and(
-        	PathSelectors.regex("/.*"), 
-        	Predicates.not(PathSelectors.regex("/error.*"))
-        );
-    }
+//    @Bean
+//    public Docket api() {
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .apiInfo(apiInfo())
+//                .select()
+//                .apis(RequestHandlerSelectors.any())
+//                .paths(paths())
+//                .build();
+//    }
+//
+//    // Describe your apis
+//    private ApiInfo apiInfo() {
+//        return new ApiInfoBuilder()
+//                .title("Swagger Sample APIs")
+//                .description("This page lists all the rest apis for Swagger Sample App.")
+//                .version("1.0-SNAPSHOT")
+//                .build();
+//    }
+//
+//    // Only select apis that matches the given Predicates.
+//    private Predicate<String> paths() {
+//    	// Match all paths except /error
+//        return Predicates.and(
+//        	PathSelectors.regex("/.*"), 
+//        	Predicates.not(PathSelectors.regex("/error.*"))
+//        );
+//    }
 }
