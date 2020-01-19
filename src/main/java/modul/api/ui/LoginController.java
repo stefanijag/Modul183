@@ -1,29 +1,21 @@
 package modul.api.ui;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import modul.api.service.ApiService;
 import modul.api.service.bean.LoginBean;
 import modul.api.service.bean.RegisterUIBean;
 import modul.api.service.exception.ProjectCollectorException;
-import modul.api.service.hibbean.LoginHIBBean;
-import modul.api.service.hibbean.ProjectHIBBean;
 
 /**
  * the controller for all views for the login and registration
@@ -31,110 +23,44 @@ import modul.api.service.hibbean.ProjectHIBBean;
  * M183: Project collector
  * 
  * @author Kristina Klincov, Stefanija Gojkovic
- * @version 1.1
+ * @version 1.2
  */
 @RestController
 public class LoginController {
 
 	@Autowired
 	ApiService apiService;
-	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
-//	@PostMapping(value = "/login")
-//	public String index(@Valid @ModelAttribute("login") LoginBean loginBean, BindingResult result) {
-//		return "/login/viewLogin";
-//	}
-	
-	@GetMapping("/login")
-	public LoginBean index(@Valid @ModelAttribute("login") LoginBean loginBean) {
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public LoginBean index(HttpServletRequest request) {
+		return new LoginBean();
+	}
+
+	@RequestMapping(value = "/project/role/{id}", method = RequestMethod.POST)
+	public List<LoginBean> showRoleChanger(@AuthenticationPrincipal LoginBean loginBean, HttpServletRequest request) throws ProjectCollectorException {
+		List<LoginBean> list = new ArrayList<>();
+		apiService.readAllLogin().get().forEach(hib -> list.add(new LoginBean(hib.getUsername(), hib.getPassword())));
+		return list;
+	}
+
+	@RequestMapping(value = "/project/role/submit/{id}", method = RequestMethod.PUT)
+	public LoginBean changeRoles(@RequestParam("role") String role, @AuthenticationPrincipal LoginBean userToChange, HttpServletRequest request) {
+		return new LoginBean(userToChange.getUsername(), userToChange.getPassword(), 
+				userToChange.getLoginId(), userToChange.getRole());
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public RegisterUIBean register(HttpServletRequest request) {
+		return new RegisterUIBean();
+	}
+
+	@RequestMapping(value = "/login/check/{id}", method = RequestMethod.POST)
+	public LoginBean loginCheck(@AuthenticationPrincipal LoginBean loginBean, HttpServletRequest request) throws Exception {
 		return new LoginBean(loginBean.getUsername(), loginBean.getPassword());
 	}
 
-	@PostMapping(value = "/project/role")
-	public ModelAndView showRoleChanger(@Valid @ModelAttribute("login") LoginBean loginBean, BindingResult result,
-			ModelMap model) {
-		try {
-			model.addAttribute("usernames", (List<LoginHIBBean>) apiService.readAllLogin().get());
-		} catch (ProjectCollectorException e) {
-			LOGGER.error(e.getMessage(), e);
-		}
-		return new ModelAndView("/login/viewAdminChangeRoles");
+	@RequestMapping(value = "/register/submit", method = RequestMethod.POST)
+	public RegisterUIBean registrationProcess(@AuthenticationPrincipal RegisterUIBean registerUIBean) {
+		return new RegisterUIBean(registerUIBean.getName(), registerUIBean.getLastname(), registerUIBean.getUsername(), registerUIBean.getPassword(), registerUIBean.getConfirmPassword(), registerUIBean.getEmail(), registerUIBean.getRole());
 	}
-
-	@PostMapping(value = "/project/role/submit")
-	public String changeRoles(@RequestParam("role") String role, @Valid @ModelAttribute("login") LoginBean userToChange,
-			BindingResult result, ModelMap model) {
-		LoginHIBBean loginHIBBean = new LoginHIBBean(userToChange.getLoginId(), role);
-		try {
-			apiService.updateLogin(loginHIBBean);
-			LOGGER.info("Update of Role Change was successfull");
-			model.addAttribute("usernames", (List<LoginHIBBean>) apiService.readAllLogin().get());
-			model.addAttribute("success", "Role konnte erfolgreich geändert werden!");
-		} catch (ProjectCollectorException e) {
-			model.addAttribute("error", "Role konnte nicht geändert werden!");
-			LOGGER.error(e.getMessage(), e);
-		}
-		return "/login/viewAdminChangeRoles";
-	}
-
-	@PostMapping(value = "/register")
-	public String register(@Valid @ModelAttribute("register") RegisterUIBean regiterUIBean, BindingResult result) {
-		return "/login/viewRegister";
-	}
-
-	@PostMapping(value = "/login/check")
-	public ModelAndView loginCheck(@Valid @ModelAttribute("login") LoginBean loginBean, BindingResult result,
-			ModelMap model) throws Exception {
-		result.getAllErrors();
-		try {
-			String role = apiService.readLoginByUsernameAndPassword(loginBean.getUsername(), loginBean.getPassword());
-			if (role == null || role.isEmpty() || Objects.isNull(role)) {
-				model.addAttribute("error", "Username oder Passwort ist nicht korrekt!");
-				LOGGER.debug("Wrong Login data username: " + loginBean.getUsername() + " and password: "
-						+ loginBean.getPassword());
-				return new ModelAndView("/login/viewLogin");
-			} else if (role.equals("AD")) {
-				model.addAttribute("projects", (List<ProjectHIBBean>) apiService.readAllProjects().get());
-				LOGGER.info("Successfully logged in as a admin");
-				return new ModelAndView("redirect:/projectAdmin");
-			}
-			model.addAttribute("projects", (List<ProjectHIBBean>) apiService.readAllProjects().get());
-			LOGGER.info("Successfully logged in as a User");
-			return new ModelAndView("redirect:/projectUser");
-		} catch (ProjectCollectorException e) {
-			LOGGER.error(e.getMessage(), e);
-		}
-		return new ModelAndView("redirect:/login");
-	}
-
-	@PostMapping(value = "/register/submit")
-	public ModelAndView registrationProcess(@Valid @ModelAttribute("register") RegisterUIBean registerUIBean,
-			BindingResult result, ModelMap model) {
-		try {
-			if (result.hasErrors()) {
-				model.addAttribute("errors", result.getAllErrors());
-				LOGGER.error("Validation error:" + result.getAllErrors());
-			} else {
-				if (!registerUIBean.getPassword().matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%+]).{8,})")) {
-					model.addAttribute("error", "Passwort muss: mindenst 8 Zeichen, ein Sonderzeichen, Gross- & Kleinbuchstaben und eine Nummer beinhalten");
-					LOGGER.error("Password isn't secure enough");
-				} else {
-					if (registerUIBean.getPassword().equals(registerUIBean.getConfirmPassword())) {
-						apiService.createAccount(new LoginHIBBean(registerUIBean.getUsername(),
-								registerUIBean.getRole(), registerUIBean.getPassword(), registerUIBean.getEmail(),
-								registerUIBean.getName(), registerUIBean.getLastname()));
-						LOGGER.info("Registration was successfully made");
-						return new ModelAndView("redirect:/login");
-					} else {
-						LOGGER.info("Password and confirm password does not match");
-						model.addAttribute("error", "Passwort und Passwort bestätigen stimmt nicht überein");
-					}
-				}
-			}
-		} catch (ProjectCollectorException e) {
-			LOGGER.error(e.getMessage(), e);
-		}
-		return new ModelAndView("/login/viewRegister");
-	}
-
 }

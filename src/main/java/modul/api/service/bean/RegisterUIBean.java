@@ -19,6 +19,7 @@ public class RegisterUIBean {
 	private String lastname;
 	@NotBlank(message = "Bitte geben Sie einen Usernamen ein")
 	private String username;
+	@Pattern(regexp = "((?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%+]).{8,})")
 	@NotBlank(message = "Bitte geben Sie ein Passwort ein")
 	private String password;
 	@NotBlank(message = "Bitte bestätigen Sie Ihr Passwort")
@@ -28,6 +29,28 @@ public class RegisterUIBean {
 	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message="Ungueltige E-Mail!") // Noed sicher obs guet isch
 	private String email;
 	private String role = "US";
+
+	
+	public RegisterUIBean () {
+		
+	}
+	
+	public RegisterUIBean(@NotBlank(message = "Bitte geben Sie ihren Namen ein") String name,
+			@NotBlank(message = "Bitte geben Sie ihren Nachnamen ein") String lastname,
+			@NotBlank(message = "Bitte geben Sie einen Usernamen ein") String username,
+			@Pattern(regexp = "((?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%+]).{8,})") @NotBlank(message = "Bitte geben Sie ein Passwort ein") String password,
+			@NotBlank(message = "Bitte bestätigen Sie Ihr Passwort") String confirmPassword,
+			@NotBlank(message = "Bitte geben Sie Ihre E-Mail Adresse ein") @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "Ungueltige E-Mail!") String email,
+			String role) {
+		super();
+		this.name = name;
+		this.lastname = lastname;
+		this.username = username;
+		this.password = password;
+		this.confirmPassword = confirmPassword;
+		this.email = email;
+		this.role = role;
+	}
 
 	//Getter and setter
 	

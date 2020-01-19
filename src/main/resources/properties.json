@@ -1,0 +1,287 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "users",
+    "usersIdSequence",
+    "project",
+    "projectIdSequence" 
+  ],
+  "properties": {
+    "user": {
+      "$id": "#/properties/loginid",
+      "type": "Long",
+      "title": "The Users Schema",
+      "items": {
+        "$id": "#/properties/loginBean/user",
+        "type": "object",
+        "title": "The Users Items Schema",
+        "required": [
+          "id",
+          "name",
+          "lastname",
+          "username",
+          "password",
+          "confirmPassword",
+          "email",
+          "role"
+        ],
+        "properties": {
+          "id": {
+            "$id": "#/properties/loginBean/id",
+            "type": "integer",
+            "title": "The Users Id Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          },
+          "name": {
+            "$id": "#/properties/loginBean/name",
+            "type": "string",
+            "title": "The Users Name Schema",
+            "default": "",
+            "examples": [
+              "Kristina"
+            ],
+            "pattern": "^[A-Za-z\\s]+$"
+          },
+          "lastname": {
+            "$id": "#/properties/loginBean/lastname",
+            "type": "string",
+            "title": "The Users Lastname Schema",
+            "default": "",
+            "examples": [
+              "Klincov"
+            ],
+            "pattern": "^[A-Za-z\\s]+$"
+          },
+          "username": {
+            "$id": "#/properties/loginBean/username",
+            "type": "string",
+            "title": "The Users Username Schema",
+            "default": "",
+            "examples": [
+              "krisk"
+            ],
+            "pattern": "^[A-Za-z\\s]+$"
+          },
+          "password": {
+            "$id": "#/properties/loginBean/password",
+            "type": "string",
+            "title": "The Users Password Schema",
+            "default": "",
+            "examples": [
+              "cf0b854f5a17fdad773d462438d4d7328722b817d40a74ecb8d9ad79f98aa251"
+            ],
+            "pattern": "^[a-zA-Z0-9.!_\\-+?]{10,}$"
+          },
+          "passwordConfirm": {
+            "$id": "#/properties/loginBean/passwordConfirm",
+            "type": "string",
+            "title": "The Users Password Confirm Schema",
+            "default": "",
+            "examples": [
+              "cf0b854f5a17fdad773d462438d4d7328722b817d40a74ecb8d9ad79f98aa251"
+            ],
+            "pattern": "^[a-zA-Z0-9.!_\\-+?]{10,}$"
+          },
+          "email": {
+            "$id": "#/properties/loginBean/email",
+            "type": "string",
+            "title": "The Users email Schema",
+            "default": "",
+            "examples": [
+              "kristina.klincov@hotmail.com"
+            ],
+            "pattern": "^.+@.+\\..+$"
+          },
+          "role": {
+            "$id": "#/properties/loginBean/role",
+            "type": "string",
+            "title": "The Users Role Schema",
+            "default": "",
+            "examples": [
+              "ADMIN",
+              "USER"
+            ],
+            "pattern": "^(ADMIN|USER)$"
+          },
+              "properties": {
+                "id": {
+                  "$id": "#/properties/projectBean/id",
+                  "type": "integer",
+                  "title": "The Id Schema",
+                  "default": 0,
+                  "examples": [
+                    1
+                  ]
+                },
+                "projectName": {
+                  "$id": "#/properties/projectBean/projectName",
+                  "type": "string",
+                  "title": "The Projectname Schema",
+                  "default": " ",
+                  "examples": [
+                    "Project"
+                  ], 
+                  "pattern": "^[A-Za-z\\s]+$"
+                },
+                "releaseDate": {
+                  "$id": "#/properties/projectBean/releaseDate",
+                  "type": "date",
+                  "title": "The release Schema",
+                  "default": "",
+                  "examples": [
+                    "2019-12-18"
+                  ],
+                  "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                },
+                "description": {
+                  "$id": "#/properties/projectBean/description",
+                  "type": "string",
+                  "title": "The description Schema",
+                  "default": "",
+                  "examples": [
+                    "this is a description"
+                  ],
+                  "pattern": "^[A-Za-z\\s]+$"
+                },
+                "team": {
+                  "$id": "#/properties/projectBean/team",
+                  "type": "list",
+                  "title": "The Team Schema",
+                  "items": {
+                    "$id": "#/properties/projectBean/team",
+                    "type": "list",
+                    "title": "The Service Items Schema",
+                    "default": " "
+                  }
+                },
+                "saveProject": {
+                  "$id": "#/properties/projectBean",
+                  "type": "object",
+                  "title": "The save Schema",
+                  "default": "",
+                  "examples": [
+                    "Successfully Saved"
+                  ],
+                  "pattern": "^.{0,250}$"
+                },
+                "updateProject": {
+                  "$id": "#/properties/projectBean",
+                  "type": "object",
+                  "title": "The save Schema",
+                  "default": "",
+                  "examples": [
+                    "Successfully Updated"
+                  ],
+                  "pattern": "^.{0,250}$"
+                }, 
+                "deleteProject": {
+                  "$id": "#/properties/projectBean",
+                  "type": "object",
+                  "title": "The delete Schema",
+                  "default": "",
+                  "examples": [
+                    "Successfully deleted"
+                  ],
+                  "pattern": "^.{0,250}$"
+                }, 
+                "readAllProject": {
+                  "$id": "#/properties/projectBean",
+                  "type": "list",
+                  "title": "The read Schema",
+                  "default": "",
+                  "examples": [
+                    "all projects read"
+                  ],
+                  "pattern": "^.{0,250}$"
+                }, 
+                "readProject": {
+                  "$id": "#/properties/projectBean",
+                  "type": "object",
+                  "title": "The read Schema",
+                  "default": "",
+                  "examples": [
+                    "Successfully read"
+                  ],
+                  "pattern": "^.{0,250}$"
+                }, 
+                "saveUser": {
+                  "$id": "#/properties/loginBean",
+                  "type": "object",
+                  "title": "The save Schema",
+                  "default": "",
+                  "examples": [
+                    "Successfully Saved"
+                  ],
+                  "pattern": "^.{0,250}$"
+                }, 
+                "updateUser": {
+                  "$id": "#/properties/loginBean",
+                  "type": "object",
+                  "title": "The update Schema",
+                  "default": "",
+                  "examples": [
+                    "Successfully updated"
+                  ],
+                  "pattern": "^.{0,250}$"
+                }, 
+                "readUser": {
+                  "$id": "#/properties/loginBean",
+                  "type": "object",
+                  "title": "The read Schema",
+                  "default": "",
+                  "examples": [
+                    "Successfully read"
+                  ],
+                  "pattern": "^.{0,250}$"
+                }, 
+                "readAllUser": {
+                  "$id": "#/properties/loginBean",
+                  "type": "list",
+                  "title": "The read Schema",
+                  "default": "",
+                  "examples": [
+                    "Successfully read"
+                  ],
+                  "pattern": "^.{0,250}$"
+                }, 
+                "deleteUser": {
+                  "$id": "#/properties/loginBean",
+                  "type": "object",
+                  "title": "The delete Schema",
+                  "default": "",
+                  "examples": [
+                    "Successfully deleted"
+                  ],
+                  "pattern": "^.{0,250}$"
+                }
+              }
+            }
+          }
+        }
+      },
+    "usersIdSequence": {
+      "$id": "#/properties/usersIdSequence",
+      "type": "integer",
+      "title": "The Usersidsequence Schema",
+      "default": 0,
+      "examples": [
+        4
+      ]
+    },
+    "reservationenIdSequence": {
+      "$id": "#/properties/reservationenIdSequence",
+      "type": "integer",
+      "title": "The Reservationenidsequence Schema",
+      "default": 0,
+      "examples": [
+        3
+      ]
+    }
+}

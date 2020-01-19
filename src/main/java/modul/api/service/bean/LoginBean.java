@@ -15,12 +15,28 @@ public class LoginBean {
 	@NotBlank(message="Bitte alle Felder ausfüllen!")
 	private String password;
 	private Long loginId;
+	private String role;
 
 	//Getter and setter
+	
+	
 	
 	public LoginBean(String username, String password) {
 		this.username = username;
 		this.password = password;
+	}
+
+	public LoginBean(@NotBlank(message = "Bitte alle Felder ausfüllen!") String username,
+			@NotBlank(message = "Bitte alle Felder ausfüllen!") String password, Long loginId, String role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.loginId = loginId;
+		this.role = role;
+	}
+
+	public LoginBean() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getUsername() {
@@ -45,5 +61,13 @@ public class LoginBean {
 
 	public void setLoginId(Long loginId) {
 		this.loginId = loginId;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }
