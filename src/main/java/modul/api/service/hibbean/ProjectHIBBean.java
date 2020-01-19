@@ -1,15 +1,13 @@
 package modul.api.service.hibbean;
 
 import java.sql.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 /**
  * the Hibernate Bean for the projects
@@ -33,19 +31,19 @@ public class ProjectHIBBean {
 	@Column(name = "DESCRIPTION")
 	private String description;
 	
-	@OneToMany(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinTable(name = "TEAM_ID")
-	private List<TeamHIBBean> teams;
+	private TeamHIBBean team;
 	
 	public ProjectHIBBean() {
 		
 	}
 	
-	public ProjectHIBBean(String projectName, Date releaseDate, String description, List<TeamHIBBean> teams) {
+	public ProjectHIBBean(String projectName, Date releaseDate, String description, TeamHIBBean team) {
 		this.projectName = projectName;
 		this.releaseDate = releaseDate;
 		this.description = description;
-		this.teams = teams;
+		this.team = team;
 	}
 	
 	public Long getProjectId() {
@@ -73,11 +71,11 @@ public class ProjectHIBBean {
 		this.description = description;
 	}
 
-	public List<TeamHIBBean> getTeams() {
-		return teams;
+	public TeamHIBBean getTeam() {
+		return team;
 	}
 
-	public void setTeams(List<TeamHIBBean> teams) {
-		this.teams = teams;
+	public void setTeam(TeamHIBBean team) {
+		this.team = team;
 	}
 }

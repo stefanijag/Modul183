@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 
 import modul.api.database.repo.LoginRepository;
 import modul.api.database.repo.ProjectRepository;
+import modul.api.database.repo.TeamRepository;
 import modul.api.service.api.ApiPersistenceAPI;
 import modul.api.service.exception.ProjectCollectorException;
 import modul.api.service.hibbean.LoginHIBBean;
 import modul.api.service.hibbean.ProjectHIBBean;
+import modul.api.service.hibbean.TeamHIBBean;
 
 /**
  * Implementation for all needed database statements database level
@@ -27,6 +29,8 @@ public class ApiPersistenceDBImpl implements ApiPersistenceAPI{
 	private ProjectRepository projectRepo;
 	@Autowired
 	private LoginRepository loginRepo;
+	@Autowired
+	private TeamRepository teamRepo;
 
 	@Override
 	public Long updateProject(ProjectHIBBean projectHIBBean) throws ProjectCollectorException{
@@ -114,6 +118,24 @@ public class ApiPersistenceDBImpl implements ApiPersistenceAPI{
 	public Optional<Iterable<LoginHIBBean>> readAllLogin() throws ProjectCollectorException {
 		try {
 			return Optional.of(loginRepo.findAll());
+		} catch(Exception e){
+			throw new ProjectCollectorException(e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public Optional<Iterable<TeamHIBBean>> readAllTeam() throws ProjectCollectorException {
+		try {
+			return Optional.of(teamRepo.findAll());
+		} catch(Exception e){
+			throw new ProjectCollectorException(e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public Optional<TeamHIBBean> readTeamById(Long teamId) throws ProjectCollectorException {
+		try {
+			return teamRepo.findById(teamId);
 		} catch(Exception e){
 			throw new ProjectCollectorException(e.getMessage(), e);
 		}

@@ -6,6 +6,7 @@ import modul.api.service.bean.ProjectBean;
 import modul.api.service.exception.ProjectCollectorException;
 import modul.api.service.hibbean.LoginHIBBean;
 import modul.api.service.hibbean.ProjectHIBBean;
+import modul.api.service.hibbean.TeamHIBBean;
 /**
  * Interface for all needed database statements controller level
  * 
@@ -37,4 +38,9 @@ public interface ApiService {
 	Optional<LoginHIBBean> readLoginById(Long loginId) throws ProjectCollectorException;
 	
 	Optional<Iterable<LoginHIBBean>> readAllLogin() throws ProjectCollectorException;
+	
+	//Team
+	Optional <Iterable<TeamHIBBean>> readAllTeams() throws ProjectCollectorException;
+	Optional <TeamHIBBean> readTeamById(Long teamId) throws ProjectCollectorException;
+	
 }

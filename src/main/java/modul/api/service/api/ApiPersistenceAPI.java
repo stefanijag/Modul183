@@ -5,6 +5,7 @@ import java.util.Optional;
 import modul.api.service.exception.ProjectCollectorException;
 import modul.api.service.hibbean.LoginHIBBean;
 import modul.api.service.hibbean.ProjectHIBBean;
+import modul.api.service.hibbean.TeamHIBBean;
 /**
  *Interface for all needed database statements database level
  * 
@@ -28,5 +29,10 @@ public interface ApiPersistenceAPI {
 	Long createAccount(LoginHIBBean loginHIBBean) throws ProjectCollectorException;
 	Optional<LoginHIBBean> readLoginById(Long loginId) throws ProjectCollectorException;
 	Optional<Iterable<LoginHIBBean>> readAllLogin() throws ProjectCollectorException;
+	
+	//Team
+	Optional<Iterable<TeamHIBBean>> readAllTeam() throws ProjectCollectorException;
+	Optional<TeamHIBBean> readTeamById(Long teamId) throws ProjectCollectorException;
+	
 
 }

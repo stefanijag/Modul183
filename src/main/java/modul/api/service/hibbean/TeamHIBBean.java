@@ -40,22 +40,26 @@ public class TeamHIBBean {
 	@JoinTable(name = "TEAMLEITER")
 	private LoginHIBBean teamleiter;
 	
-	@ManyToOne
+	@OneToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "PROJECT_ID")
-	private ProjectHIBBean  project;
+	private List<ProjectHIBBean>  projects;
+	
+	public TeamHIBBean() {
+		
+	}
 	
 	public TeamHIBBean(Long teamId) {
 		this.teamId = teamId;
 	}
 	
 	public TeamHIBBean(Long teamId, String teamname, List<LoginHIBBean> userId, LoginHIBBean teamleiter,
-			ProjectHIBBean project) {
+			List<ProjectHIBBean> projects) {
 		super();
 		this.teamId = teamId;
 		this.teamname = teamname;
 		this.userId = userId;
 		this.teamleiter = teamleiter;
-		this.project = project;
+		this.projects = projects;
 	}
 	public Long getTeamId() {
 		return teamId;
@@ -81,10 +85,10 @@ public class TeamHIBBean {
 	public void setTeamleiter(LoginHIBBean teamleiter) {
 		this.teamleiter = teamleiter;
 	}
-	public ProjectHIBBean getProject() {
-		return project;
+	public List<ProjectHIBBean> getProjects() {
+		return projects;
 	}
-	public void setProject(ProjectHIBBean project) {
-		this.project = project;
+	public void setProjects(List<ProjectHIBBean> projects) {
+		this.projects = projects;
 	}
 }
