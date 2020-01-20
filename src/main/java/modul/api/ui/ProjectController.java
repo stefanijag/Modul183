@@ -68,7 +68,7 @@ public class ProjectController {
 		return new ModelAndView("/project/overviewProjectAdmin");
 	}
 
-	@RequestMapping(value = "/project")
+	@RequestMapping(value = "/projekt")
 	public ModelAndView displayCreateProjectForm(@Valid @ModelAttribute("project") ProjectBean projectBean,
 			BindingResult result, ModelMap model) {
 		try {

@@ -6,14 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add New Project</title>
-<link href="/resources/style.css" rel="stylesheet" type="text/css">
+<link href="/resources/styleFile.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
+<%-- <jsp:include page="styleFile.css"/> --%>
 	<div class="menu">
 		<ul>
 			<li><a href="../projectAdmin">Overview</a></li>
 			<li><a href="../project">Projekt Hinzufügen</a></li>
-			<li><a href="..//project/role">Rolen ändern</a></li>
+			<li><a href="../project/role">Rolen ändern</a></li>
 			<li id="menuLogout"><a href="../login">Log out</a></li>
 		</ul>
 	</div>
@@ -31,8 +32,8 @@
 			<form:label for="description" path="description" id="labelDescription">Beschreibung*: </form:label>
 			<form:input type="text" name="description" path="description" id="inputDescription" /><br>
 			<form:label for="developerteam" path="developerteam" id="labelDeveloperteam">Entwicklungsteam*:</form:label>
-			 <form:select path="developerteam">
-                <form:option value="" label="--Entwicklungsteam wählen"/>
+			 <form:select path="developerteam" id="inputDeveloperteam">
+                <form:option value="" label="Team wählen"/>
                 <form:options items="${developerteam}" itemValue="teamId" itemLabel="teamname"/>
             </form:select>
             <br><br>
