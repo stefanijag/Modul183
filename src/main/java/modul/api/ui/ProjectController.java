@@ -1,5 +1,7 @@
 package modul.api.ui;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -46,7 +48,7 @@ public class ProjectController {
 		try {
 			model.addAttribute("projects", (List<ProjectHIBBean>) service.readAllProjects().get());
 		} catch (ProjectCollectorException e) {
-			LOGGER.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage());
 		}
 		LOGGER.info("return page for an user");
 		return new ModelAndView("/project/overviewProject");
@@ -71,12 +73,30 @@ public class ProjectController {
 	@RequestMapping(value = "/projekt")
 	public ModelAndView displayCreateProjectForm(@Valid @ModelAttribute("project") ProjectBean projectBean,
 			BindingResult result, ModelMap model) {
+		return new ModelAndView("/project/viewCreateProject");
+	}
+	
+	
+	@ModelAttribute("developerteam")
+	public List<TeamHIBBean> getDeveloperteam(){
 		try {
-			model.addAttribute("developerteam", (List<TeamHIBBean>) service.readAllTeams().get());
+			return (List<TeamHIBBean>) service.readAllTeams().get();
 		} catch (ProjectCollectorException e) {
 			LOGGER.error(e.getMessage());
 		}
-		return new ModelAndView("/project/viewCreateProject");
+		
+		return new ArrayList<>();
+	}
+	
+	@ModelAttribute("projects")
+	public List<ProjectHIBBean> getProjects(){
+		try {
+			return (List<ProjectHIBBean>) service.readAllProjects().get();
+		} catch (ProjectCollectorException e) {
+			LOGGER.error(e.getMessage());
+		}
+		
+		return new ArrayList<>();
 	}
 	
 	@RequestMapping(value = "/project/add")
@@ -91,12 +111,20 @@ public class ProjectController {
 				updateProject(projectBean);
 				model.addAttribute("success", "Das Projekt wurde erfolgreich aktualisiert!");
 				LOGGER.info("Project was successfully updated!");
+				return new ModelAndView("/project/overviewProjectAdmin");
 			} else {
-				createProject(projectBean);
-				model.addAttribute("success", "Das Projekt wurde erfolgreich erstellt!");
-				model.addAttribute("projectName", "");
-				model.addAttribute("description", "");
-				LOGGER.info("Project was successfully created!");
+				LocalDate enteredReleaseDate = LocalDate.parse(projectBean.getReleaseDate());
+				if (enteredReleaseDate.isEqual(LocalDate.now()) || enteredReleaseDate.isBefore(LocalDate.now())) {
+					model.addAttribute("error", "Der Release Date muss in der Zukunft liegen");
+				} else {
+					createProject(projectBean);
+					model.addAttribute("success", "Das Projekt wurde erfolgreich erstellt!");
+					model.addAttribute("projects", (List<ProjectHIBBean>) service.readAllProjects().get());
+					model.addAttribute("projectName", "");
+					model.addAttribute("description", "");
+					LOGGER.info("Project was successfully created!");
+					return new ModelAndView("/project/overviewProjectAdmin");
+				}
 			}
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
@@ -105,17 +133,16 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/project/update")
-	public ModelAndView updateProject(@Valid  @ModelAttribute("project") ProjectBean projectBean, BindingResult result,
+	public ModelAndView updateProject(@Valid @ModelAttribute("project") ProjectBean projectBean, BindingResult result,
 			ModelMap model) {
 		return new ModelAndView();
 	}
-	
+
 	@RequestMapping(value = "/project/{id}")
 	public ModelAndView removeProject(@PathVariable Long id) {
 		return new ModelAndView();
 	}
-	
-	
+
 	private void updateProject(ProjectBean projectBean) throws Exception {
 		service.updateProject(projectBean);
 	}

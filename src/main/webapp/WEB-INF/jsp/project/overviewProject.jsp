@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Overview Project</title>
-<link href="/resources/style.css" rel="stylesheet" type="text/css">
+<link href="/resources/styleFile.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="menu">
@@ -24,12 +24,14 @@
 				<th>Projektname</th>
 				<th>Release Date</th>
 				<th>Beschreibung</th>
+				<th>Entwicklungsteam</th>
 			</tr>
 			<c:forEach items="${projects}" var="project" varStatus="loop">
 				<tr>
 					<td>${project.getProjectName()}</td>
 					<td>${project.getReleaseDate()}</td>
 					<td>${project.getDescription()}</td>
+					<td>${project.getTeam().getTeamname()}</td>
 				</tr>
 			</c:forEach>
 		</table>

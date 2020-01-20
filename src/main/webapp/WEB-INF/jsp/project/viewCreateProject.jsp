@@ -30,7 +30,7 @@
 				path="releaseDate"/>
 			<br>
 			<form:label for="description" path="description" id="labelDescription">Beschreibung*: </form:label>
-			<form:input type="text" name="description" path="description" id="inputDescription" /><br>
+			<form:textarea  name="description" path="description" id="inputDescription" /><br>
 			<form:label for="developerteam" path="developerteam" id="labelDeveloperteam">Entwicklungsteam*:</form:label>
 			 <form:select path="developerteam" id="inputDeveloperteam">
                 <form:option value="" label="Team wählen"/>

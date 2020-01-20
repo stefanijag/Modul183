@@ -24,7 +24,7 @@ public class ProjectBean {
 	@NotBlank(message="Bitte geben Sie einen Beschreibung ein")
 	@Size(min=3, max=250, message="Die Beschreibung muss mindestens drei Zeichen und kann höchstens 250 enthalten!")
 	private String description;
-	@NotBlank(message = "Bitte Team aussuchen")
+	@NotBlank(message = "Kein Entwicklungsteam wurde gewählt")
 	private String developerteamId;
 
 	//Getter and setter
